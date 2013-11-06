@@ -73,7 +73,7 @@ layouts =
 tagcount = 4
 tags = {
     names  = { "term", "web", "docs", "media" },
-    layout = { awful.layout.suit.tile, awful.layout.suit.floating,
+    layout = { awful.layout.suit.tile, awful.layout.suit.tile,
               awful.layout.suit.tile, awful.layout.suit.floating, }
 }
 for i = #tags.names + 1, tagcount do
@@ -142,6 +142,9 @@ mytasklist.buttons = awful.util.table.join(
                                                   client.focus = c
                                                   c:raise()
                                               end
+                                          end),
+                     awful.button({ }, 2, function (c)
+                                              c:kill()
                                           end),
                      awful.button({ }, 3, function ()
                                               if instance then
