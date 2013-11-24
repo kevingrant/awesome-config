@@ -59,7 +59,7 @@ layouts =
     awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
+    -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
@@ -70,11 +70,11 @@ layouts =
 -- }}}
 
 -- {{{ Tags
-tagcount = 4
+tagcount = 3
 tags = {
-    names  = { "term", "web", "docs", "media" },
+    names  = { "term", "web", "media" },
     layout = { awful.layout.suit.tile, awful.layout.suit.tile,
-              awful.layout.suit.tile, awful.layout.suit.floating, }
+               awful.layout.suit.tile, }
 }
 for i = #tags.names + 1, tagcount do
     table.insert(tags.names, i)
