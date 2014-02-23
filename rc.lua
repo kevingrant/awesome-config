@@ -8,7 +8,7 @@ require("beautiful")
 require("naughty")
 
 -- Load Debian menu entries
-require("debian.menu")
+-- require("debian.menu")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -37,7 +37,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/home/kevin/.config/awesome/themes/badwolf/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -88,21 +89,21 @@ end
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
-myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
-}
+-- myawesomemenu = {
+   -- { "manual", terminal .. " -e man awesome" },
+   -- { "edit config", editor_cmd .. " " .. awesome.conffile },
+   -- { "restart", awesome.restart },
+   -- { "quit", awesome.quit }
+-- }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+-- mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    -- { "Debian", debian.menu.Debian_menu.Debian },
+                                    -- { "open terminal", terminal }
+                                  -- }
+                        -- })
 
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     menu = mymainmenu })
+-- mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
+                                     -- menu = mymainmenu })
 -- }}}
 
 -- {{{ Wibox
@@ -124,9 +125,9 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
                     awful.button({ modkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, awful.client.toggletag),
-                    awful.button({ }, 4, awful.tag.viewnext),
-                    awful.button({ }, 5, awful.tag.viewprev)
+                    awful.button({ modkey }, 3, awful.client.toggletag)
+                    -- awful.button({ }, 4, awful.tag.viewnext),
+                    -- awful.button({ }, 5, awful.tag.viewprev)
                     )
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
@@ -145,23 +146,23 @@ mytasklist.buttons = awful.util.table.join(
                                           end),
                      awful.button({ }, 2, function (c)
                                               c:kill()
-                                          end),
-                     awful.button({ }, 3, function ()
-                                              if instance then
-                                                  instance:hide()
-                                                  instance = nil
-                                              else
-                                                  instance = awful.menu.clients({ width=250 })
-                                              end
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                              if client.focus then client.focus:raise() end
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                              if client.focus then client.focus:raise() end
                                           end))
+                     -- awful.button({ }, 3, function ()
+                                              -- if instance then
+                                                  -- instance:hide()
+                                                  -- instance = nil
+                                              -- else
+                                                  -- instance = awful.menu.clients({ width=250 })
+                                              -- end
+                                          -- end),
+                     -- awful.button({ }, 4, function ()
+                                              -- awful.client.focus.byidx(1)
+                                              -- if client.focus then client.focus:raise() end
+                                          -- end),
+                     -- awful.button({ }, 5, function ()
+                                              -- awful.client.focus.byidx(-1)
+                                              -- if client.focus then client.focus:raise() end
+                                          -- end))
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
@@ -203,11 +204,11 @@ end
 -- }}}
 
 -- {{{ Mouse bindings
-root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end)
-    -- awful.button({ }, 4, awful.tag.viewnext),
-    -- awful.button({ }, 5, awful.tag.viewprev)
-))
+-- root.buttons(awful.util.table.join(
+    -- awful.button({ }, 3, function () mymainmenu:toggle() end)
+    -- -- awful.button({ }, 4, awful.tag.viewnext),
+    -- -- awful.button({ }, 5, awful.tag.viewprev)
+-- ))
 -- }}}
 
 -- {{{ Key bindings
