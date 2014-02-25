@@ -108,7 +108,8 @@ end
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
+mytextclock = awful.widget.textclock(
+  { align = "right" }, '<span color="#8cffba">%a %b %d, %H:%M</span>')
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
