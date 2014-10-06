@@ -7,6 +7,8 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
+require("vicious")
+
 -- Load Debian menu entries
 -- require("debian.menu")
 
@@ -42,8 +44,6 @@ beautiful.init("/home/kevin/.config/awesome/themes/badwolf/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
-editor = os.getenv("EDITOR") or "editor"
-editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -85,25 +85,6 @@ for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag(tags.names, s, tags.layout)
 end
--- }}}
-
--- {{{ Menu
--- Create a laucher widget and a main menu
--- myawesomemenu = {
-   -- { "manual", terminal .. " -e man awesome" },
-   -- { "edit config", editor_cmd .. " " .. awesome.conffile },
-   -- { "restart", awesome.restart },
-   -- { "quit", awesome.quit }
--- }
-
--- mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    -- { "Debian", debian.menu.Debian_menu.Debian },
-                                    -- { "open terminal", terminal }
-                                  -- }
-                        -- })
-
--- mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     -- menu = mymainmenu })
 -- }}}
 
 -- {{{ Wibox
@@ -165,6 +146,9 @@ mytasklist.buttons = awful.util.table.join(
                                               -- if client.focus then client.focus:raise() end
                                           -- end))
 
+batwidget = widget({ type = "textbox" })
+vicious.register(batwidget, vicious.widgets.bat, '<span color="#8cffba">$1 $2 $3</span>', 61, "BAT0")
+
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -197,6 +181,8 @@ for s = 1, screen.count() do
         },
         separator,
         mytextclock,
+        separator,
+        batterywidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -426,6 +412,6 @@ function run_once(prg,arg_string,pname,screen)
     end
 end
 
-run_once("google-chrome", nil, "chrome")
-run_once("banshee")
+-- run_once("google-chrome", nil, "chrome")
+-- run_once("banshee")
 -- }}}
