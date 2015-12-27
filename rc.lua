@@ -7,7 +7,7 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
-require("vicious")
+-- require("vicious")
 
 -- Load Debian menu entries
 -- require("debian.menu")
@@ -146,8 +146,8 @@ mytasklist.buttons = awful.util.table.join(
                                               -- if client.focus then client.focus:raise() end
                                           -- end))
 
-batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, '<span color="#8cffba">$1 $2 $3</span>', 61, "BAT0")
+-- batwidget = widget({ type = "textbox" })
+-- vicious.register(batwidget, vicious.widgets.bat, '<span color="#8cffba">$1 $2 $3</span>', 61, "BAT0")
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
@@ -270,7 +270,15 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
-              end)
+              end),
+
+    -- Multimedia
+    awful.key({ }, "XF86AudioRaiseVolume", function ()
+       awful.util.spawn("amixer set Master 9%+", false) end),
+    awful.key({ }, "XF86AudioLowerVolume", function ()
+       awful.util.spawn("amixer set Master 9%-", false) end),
+    awful.key({ }, "XF86AudioMute", function ()
+       awful.util.spawn("amixer -D pulse set Master 1+ toggle", false) end)
 )
 
 clientkeys = awful.util.table.join(
